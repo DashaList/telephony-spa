@@ -34,6 +34,10 @@ export const CallsTable: FC = () => {
     setCalls((prev) => [newCall].concat(prev));
   };
 
+  const deleteCall = (id: string) => {
+    setCalls((prev) => prev.filter((call) => call.id !== id));
+  };
+
   const handleChangeResponsible = (id: string) => (responsible: string) => {
     setCalls((prev) => prev.map((call) => (call.id === id ? { ...call, responsible } : call)));
   };
@@ -72,6 +76,7 @@ export const CallsTable: FC = () => {
             onTypeChange={handleChangeType(call.id)}
             onPriorityChange={handleChangePriority(call.id)}
             onDateChange={handleChangeDate(call.id)}
+            onDelete={() => deleteCall(call.id)}
           />
         ))}
       </div>

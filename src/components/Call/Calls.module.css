@@ -6,6 +6,8 @@
   color: white;
   border-radius: 9999px;
   padding: 16px 48px;
+  position: relative;
+  overflow-y: visible;
 }
 
 .timeBlock {
@@ -70,4 +72,27 @@
   background-color: #bce3d6;
   color: #1a2e2e;
   border: none;
+}
+
+.delete {
+  position: absolute;
+  top: 30px;
+  left: -10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #ca2e2e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease;
+  z-index: 2;
+}
+
+.delete:hover {
+  background-color: #e03c3f;
 }

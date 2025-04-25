@@ -1,7 +1,7 @@
 import { FC, forwardRef } from 'react';
 import styles from './Calls.module.css';
 import { ICall, ICallPriority, ICallType } from '@types';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Trash2 } from 'lucide-react';
 import DatePicker from 'react-datepicker';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
@@ -12,6 +12,7 @@ interface ICallProps {
   onTypeChange: (type: ICallType) => void;
   onPriorityChange: (priority: ICallPriority) => void;
   onDateChange: (date: Date) => void;
+  onDelete: () => void;
 }
 
 export const Call: FC<ICallProps> = ({
@@ -20,6 +21,7 @@ export const Call: FC<ICallProps> = ({
   onTypeChange,
   onPriorityChange,
   onDateChange,
+  onDelete,
 }) => {
   const { date, responsible, type, priority } = call;
 
@@ -32,6 +34,9 @@ export const Call: FC<ICallProps> = ({
 
   return (
     <div className={styles.container}>
+      <button className={styles.delete} onClick={onDelete}>
+        <Trash2 />
+      </button>
       <DatePicker
         selected={date}
         onChange={(v) => onDateChange(v ?? new Date())}
