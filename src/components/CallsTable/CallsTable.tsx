@@ -49,7 +49,6 @@ export const CallsTable: FC = () => {
   const handleChangeDate = (id: string) => (date: Date) => {
     setCalls((prev) => prev.map((call) => (call.id === id ? { ...call, date } : call)));
   };
-  console.log('calls', calls);
 
   return (
     <div className={styles.wrapper}>

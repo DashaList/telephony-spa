@@ -2,7 +2,6 @@ import { FC, forwardRef } from 'react';
 import styles from './Calls.module.css';
 import { ICall, ICallPriority, ICallType } from '@types';
 import { ChevronDown } from 'lucide-react';
-import { Select } from '@components/Select';
 import DatePicker from 'react-datepicker';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
@@ -24,10 +23,10 @@ export const Call: FC<ICallProps> = ({
 }) => {
   const { date, responsible, type, priority } = call;
 
-  const DateInput = forwardRef(({ value, onClick }, ref) => (
-    <div className={styles.timeBlock} onClick={onClick} ref={ref} >
-      <div className={styles.time}>{format(date, "p", { locale: ru })}</div>
-      <div className={styles.date}>{format(date, "dd MMM yyyy", { locale: ru })}</div>
+  const DateInput = forwardRef<HTMLDivElement, { onClick?: () => void }>(({ onClick }, ref) => (
+    <div className={styles.timeBlock} onClick={onClick} ref={ref}>
+      <div className={styles.time}>{format(date, 'p', { locale: ru })}</div>
+      <div className={styles.date}>{format(date, 'dd MMM yyyy', { locale: ru })}</div>
     </div>
   ));
 
@@ -46,7 +45,6 @@ export const Call: FC<ICallProps> = ({
       />
       <div className={styles.selectWrapper}>
         <select
-          // className={`${styles.select} ${row.direction === 'Входящий' ? styles.incoming : ''}`}
           className={styles.select}
           value={type}
           onChange={(e) => onTypeChange(e.target.value as ICallType)}
@@ -60,7 +58,6 @@ export const Call: FC<ICallProps> = ({
       </div>
       <div className={styles.selectWrapper}>
         <select
-          // className={`${styles.select} ${row.direction === 'Входящий' ? styles.incoming : ''}`}
           className={styles.select}
           value={priority}
           onChange={(e) => onPriorityChange(e.target.value as ICallPriority)}
@@ -72,7 +69,6 @@ export const Call: FC<ICallProps> = ({
           <ChevronDown />
         </span>
       </div>
-      <Select value={priority} options={['обычный', 'срочный']} onChange={onPriorityChange} />
     </div>
   );
 };
